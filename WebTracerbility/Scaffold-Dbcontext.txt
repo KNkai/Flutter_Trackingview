@@ -1,0 +1,1 @@
+Scaffold-DbContext "Server=DESKTOP-CB6RF28;Database=BID_PHAR;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Repository -Context BID_PHARDbcontext -f

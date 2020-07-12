@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Products>;
+@{
+    var data = ViewBag.Message;
+    bool check = false;
+    DateTime? date = null;
+}
+
+<!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                List Products
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px">
+                        <div class="input-group-lg">
+                            <button onclick="showInPopup('@Url.Action("CreateProduct", "ProductWeb",null, Context.Request.Scheme)','News Product')" type="button" class="btn btn-success">Add Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Efg Date</th>
+                            <th>Exp Date</th>
+                            <th>Manufactured Name</th>
+                            <th>Detail</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td> @Html.DisplayFor(modelItem=>item.IdProduct) </td>
+                                <td> @Html.DisplayFor(modelItem=>item.NameProduct) </td>
+                                <td> @Html.DisplayFor(modelItem=>item.ManufacturedDate) </td>
+                                <td> @Html.DisplayFor(modelItem=>item.ExpiredDate) </td>
+                                <td> @Html.DisplayFor(modelItem=>item.Manufactured) </td>
+                                <td> @Html.DisplayFor(modelItem=>item.Details) </td>
+                                <td class="text-right py-0 align-middle">
+                                    <div class="btn-group btn-group-sm">
+                                        <a onclick="showInPopup('@Url.Action("CreateProduct", "ProductWeb",new { id = item.IdProduct.Trim() }, Context.Request.Scheme)','Update Product')" class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                        @*<a onclick="showInPopup('@Url.Action("CreateProduct", "ProductWeb",new { id = item.IdProduct.Trim() }, Context.Request.Scheme)','Update Product')" class="btn btn-info"><i class="fas fa-edit"></i></a>*@
+                                        <form asp-action="DeleteProduct" asp-controller="ProductWeb" asp-route-id="@item.IdProduct.Trim()" onsubmit="return jQueryAjaxDelete(this)">
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                        
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+

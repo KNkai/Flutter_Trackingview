@@ -1,0 +1,9 @@
+﻿@*@productTransaction ProductTransactions;*@
+@model IEnumerable<Products>;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="view-all">
+    @await Html.PartialAsync("_ViewAll", Model);
+</div>

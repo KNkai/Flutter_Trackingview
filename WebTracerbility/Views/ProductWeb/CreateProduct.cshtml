@@ -1,0 +1,67 @@
+﻿@model BidPhar_services.Models.ViewModels.ViewModelsDataEntry;
+@{
+    ViewData["Title"] = "CreateProduct";
+    var data = ViewBag.Message;
+    Layout = null;
+}
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Create a product</h3>
+    </div>
+    <form role="form" asp-action="CreateProduct"  onsubmit="return jQueryAjaxPost(this);">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <div class="card-body col-md-12">
+            <div class="form-group">
+                <label for="idProduct">Id Product</label>
+                @Html.TextBoxFor(model => model.IdProduct, new { @class = "form-control" })
+                @*<span asp-validation-for="IdProduct" class="text-danger"></span>*@
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="nameProduct">Name Product</label>
+                    @Html.TextBoxFor(model => model.NameProduct, new { @class = "form-control" })
+                    @*<span asp-validation-for="NameProduct" class="text-danger"></span>*@
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nameProduct">Name Manufactured</label>
+                    @Html.TextBoxFor(model => model.Manufactured, new { @class = "form-control" })
+                    @*<span asp-validation-for="Manufactured" class="text-danger"></span>*@
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="efgDate">Efg Date</label>
+                @Html.EditorFor(model => model.ManufacturedDate, new { @type = "date" } )
+                @*<span asp-validation-for="ManufacturedDate" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label for="expDate">Exp Date</label>
+                @Html.EditorFor(model => model.ExpiredDate, new {@type = "date" } )
+                @*<span asp-validation-for="ExpiredDate" class="text-danger"></span>*@
+            </div>
+
+            <div class="form-group">
+                <label for="detail">Detail</label>
+                @Html.TextAreaFor(model => model.Details, new { @class = "form-control", @row = "4" })
+                @*<span asp-validation-for="Details" class="text-danger"></span>*@
+            </div>
+
+            <div class="form-group">
+                <label for="inputStatus">Choose a Location</label>
+                @Html.DropDownListFor(model => model.IdLocation, new SelectList(data, "IdLocation", "Location1"), "Select one", new { @class = "form-control custom-select" })
+                @*<span asp-validation-for="IdLocation" class="text-danger"></span>*@
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts{ 
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

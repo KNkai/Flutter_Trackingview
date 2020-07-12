@@ -1,0 +1,20 @@
+﻿@model ProductTransactions;
+@{
+    ViewData["Title"] = "GetProductTransById";
+    Layout = null;
+}
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th style="width:50%">User:</th>
+                    <td >@Model.IdUser</td>
+                </tr>
+                <tr>
+                    <th>Date Checked:</th>
+                    <td >@Model.DateChecked</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
